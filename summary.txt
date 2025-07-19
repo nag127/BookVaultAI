@@ -1,0 +1,44 @@
+## Project Summary: BookVaultAI
+
+BookVaultAI is a Flask-based web application designed to process PDF books, generate summaries, and answer questions about the content. The application leverages several services and agents to perform these tasks using natural language processing and machine learning models, specifically OpenAI's GPT-4 model.
+
+### Key Components:
+
+1. **Flask Web Application**:
+   - **Routes**:
+     - `/upload`: Handles PDF file uploads, processes the text, stores data, and returns a summary.
+     - `/ask`: Accepts a user's question and returns an answer based on the book's content.
+     - `/`: Renders the main interface for interaction.
+
+2. **Agents**:
+   - **Chunking Agent** (`chunking_agent.py`): Splits the extracted text into smaller manageable chunks to facilitate processing.
+   - **QA Agent** (`qa_agent.py`): Uses embeddings to find relevant text chunks and generate answers to user questions through GPT-4.
+   - **Summarizer Agent** (`summarizer_agent.py`): Summarizes the content of the book using GPT-4, focusing on the first few chunks to manage input size.
+
+3. **Services**:
+   - **PDF Reader** (`pdf_reader.py`): Extracts text from PDF files using PyPDF2.
+   - **Embedding Service** (`embedding_service.py`): Generates text embeddings using OpenAI's models to facilitate semantic search and question answering.
+   - **Chroma Service** (`chroma_service.py`): Manages the storage and querying of text chunks in a vector database (ChromaDB) to enable efficient retrieval and similarity search.
+
+4. **Configuration**:
+   - **LLM Config** (`llm_config.py`): Manages the setup of the OpenAI and ChromaDB clients, including API keys and client initialization.
+
+5. **Interface**:
+   - An HTML front-end (`index.html`) provides a user-friendly interface for uploading PDFs, displaying summaries, and interacting with the question-answering feature.
+   - JavaScript handles the interactions, including file uploads and the dynamic generation of question-answer blocks.
+
+### Functionality:
+
+- **PDF Processing**: Users upload a PDF book, which is read, chunked, and stored in a vector database.
+- **Summarization**: The application generates and displays a concise summary of the book.
+- **Question Answering**: Users can ask questions about the book, and the application returns answers based on the processed content.
+
+### Technologies Used:
+
+- **Flask**: Web framework for handling HTTP requests and rendering HTML templates.
+- **OpenAI GPT-4**: Used for generating summaries and answering questions.
+- **ChromaDB**: A vector database for storing and querying text embeddings.
+- **PyPDF2**: Library for reading and extracting text from PDF files.
+- **Bootstrap**: CSS library for styling the web interface.
+
+Overall, BookVaultAI provides an interactive platform for users to engage with book content through advanced text processing and language models.

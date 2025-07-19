@@ -1,0 +1,79 @@
+# How to Use BookVaultAI
+
+This guide will walk you through the setup and usage of the BookVaultAI application, a Flask-based web app designed to process PDF books, generate summaries, and answer questions using OpenAI's GPT-4 model.
+
+## Prerequisites
+
+1. **Python**: Ensure you have Python installed (version 3.6 or higher is recommended).
+
+2. **OpenAI API Key**: Obtain an OpenAI API key to access GPT-4 functionalities. Replace the placeholder `openai_api_key` in the `llm_config.py` file with your actual API key.
+
+## Installation
+
+### Step 1: Set Up the Environment
+
+1. **Clone the Repository**: Clone the BookVaultAI codebase to your local machine.
+   ```bash
+   git clone <repository_url>
+   cd BookVaultAI
+   ```
+
+2. **Create a Virtual Environment**: It's recommended to use a virtual environment to manage dependencies.
+   ```bash
+   python -m venv env
+   ```
+
+3. **Activate the Virtual Environment**:
+   - On Windows:
+     ```bash
+     .\env\Scripts\activate
+     ```
+   - On macOS and Linux:
+     ```bash
+     source env/bin/activate
+     ```
+
+### Step 2: Install Required Libraries
+
+Install the necessary Python libraries using `pip`:
+```bash
+pip install Flask PyPDF2 openai chromadb
+```
+
+### Step 3: Configure the Application
+
+1. **OpenAI API Key**: In the `config/llm_config.py` file, replace the `openai_api_key` with your actual API key:
+   ```python
+   openai_api_key = "your_actual_openai_api_key"
+   ```
+
+2. **ChromaDB Setup**: Ensure you have a working installation of ChromaDB for vector storage and querying. This is handled by the `chromadb` Python package included in the installation.
+
+## Running the Application
+
+1. **Start the Flask Application**: Execute the following command in your terminal while inside the BookVaultAI directory:
+   ```bash
+   python app.py
+   ```
+
+2. **Access the Application**: Open your web browser and navigate to `http://127.0.0.1:5000/` to access the BookVaultAI interface.
+
+## Using the Application
+
+### Upload a PDF Book
+
+1. **Upload**: Use the "Upload a PDF book" section to select and upload a PDF file from your computer.
+2. **Process**: Click "Upload & Process" to process the PDF. The application will extract text, chunk it, and store it in the vector database.
+
+### View Book Summary
+
+- After processing, a summary of the book will be displayed in the "Book Summary" section.
+
+### Ask Questions
+
+1. **Question Section**: Enter your question in the provided input field under "Ask questions about the book" and click "Ask".
+2. **Get Answers**: The application will analyze the book content and provide an answer based on the processed data.
+
+3. **Add New Questions**: Additional question blocks will appear after each question is answered, allowing you to ask multiple questions.
+
+By following this guide, you should be able to set up, run, and interact with the BookVaultAI application effectively. Enjoy exploring your books with the power of AI!
